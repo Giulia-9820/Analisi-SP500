@@ -28,7 +28,7 @@ Le aziende con più alto **rendimento mensile**:
 <img width="600" height="371" alt="Image" src="https://github.com/user-attachments/assets/65474deb-715b-4cf2-a287-b70a73cc533b" />
 
 | Azienda | Settore | 
-|--------|---------|-------|
+|--------|---------|
 | Builders FirstSource | Industriale | 
 | Enphase Energy | Tecnologia | 
 | EQT | Energia | 
