@@ -12,6 +12,8 @@ Identificare:
 
 Le **Top 3 aziende più performanti ma più rischiose** sono risultate:
 
+<img width="600" height="371" alt="Image" src="https://github.com/user-attachments/assets/a9a1d3e2-f3c5-46f0-9ce7-e5b465e720d5" />
+
 | Azienda | Settore | Motivazione rilevante |
 |--------|---------|----------------------|
 | First Solar | Energia | Aumento attese di fatturato |
