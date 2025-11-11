@@ -16,7 +16,7 @@ WITH rendimento_intraday AS (
             ELSE 'profitto intraday'
         END AS profitto_or_not_intraday 
     FROM stocks s 
-WHERE "Adj Close" <> '' OR close <> '' OR high <> '' OR low <> '' OR open <> '' OR volume <> ''
+ WHERE s.open IS NOT NULL AND s.close IS NOT NULL
 ),
 volatilita_intraday_parte1 AS(
 SELECT date, symbol, CAST(rendimento_intraday AS REAL) AS rendimento_intraday, profitto_or_not_intraday,
@@ -48,7 +48,7 @@ WITH rendimento_intraday AS (
             ELSE 'profitto intraday'
         END AS profitto_or_not_intraday 
     FROM stocks s 
-WHERE "Adj Close" <> '' OR close <> '' OR high <> '' OR low <> '' OR open <> '' OR volume <> ''
+ WHERE s.open IS NOT NULL AND s.close IS NOT NULL
 ),
 volatilita_intraday_parte1 AS(
 SELECT date, symbol, CAST(rendimento_intraday AS REAL) AS rendimento_intraday, profitto_or_not_intraday,
