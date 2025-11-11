@@ -8,7 +8,7 @@ ROUND(
 AS rendimento_medio_effettivo,
 strftime('%Y-%m', date) AS mese
 FROM stocks s
-WHERE "Adj Close" <> '' OR close <> '' OR high <> '' OR low <> '' OR open <> '' OR volume <> ''
+WHERE s.close IS NOT NULL
 ),
 volatilita_effettiva AS (
 SELECT mese, symbol, CAST(rendimento_medio_effettivo AS REAL) AS rendimento_medio_effettivo, 
@@ -20,6 +20,7 @@ SELECT mese, symbol,
 SQRT(AVG(diff2) OVER (PARTITION BY symbol, mese)) AS volatilita_mensile, --dev.standard--
 AVG(CAST(rendimento_medio_effettivo AS REAL)) OVER (PARTITION BY symbol, mese) AS rendimento_medio_mensile
 FROM volatilita_effettiva
+GROUP BY symbol, mese
 )
 SELECT mese, symbol, volatilita_mensile, rendimento_medio_mensile, 
 CASE
@@ -39,7 +40,7 @@ ROUND(
 AS rendimento_medio_effettivo,
 strftime('%Y-%m', date) AS mese
 FROM stocks s
-WHERE "Adj Close" <> '' OR close <> '' OR high <> '' OR low <> '' OR open <> '' OR volume <> ''
+WHERE s.close IS NOT NULL
 ),
 volatilita_effettiva AS (
 SELECT mese, symbol, CAST(rendimento_medio_effettivo AS REAL) AS rendimento_medio_effettivo, 
@@ -51,6 +52,7 @@ SELECT mese, symbol,
 SQRT(AVG(diff2) OVER (PARTITION BY symbol, mese)) AS volatilita_mensile, --de.standard--
 AVG(CAST(rendimento_medio_effettivo AS REAL)) OVER (PARTITION BY symbol, mese) AS rendimento_medio_mensile
 FROM volatilita_effettiva
+GROUP BY symbol, mese
 ),
 union_tabelle AS (
 SELECT *
@@ -71,7 +73,7 @@ LAG(CAST(s.close AS REAL)) OVER (PARTITION BY s.symbol ORDER BY date) AS prev_cl
 AS rendimento_medio_effettivo,
 strftime('%Y-%m', date) AS mese
 FROM stocks s
-WHERE "Adj Close" <> '' OR close <> '' OR high <> '' OR low <> '' OR open <> '' OR volume <> ''
+WHERE s.close IS NOT NULL
 ),
 sp AS(
 SELECT mese, symbol, 
