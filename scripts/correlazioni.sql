@@ -10,7 +10,7 @@ WITH rendimento_medio_effettivo AS (
            strftime('%Y-%m', date) AS mese
     FROM stocks s
     JOIN companies c ON s.Symbol = c.Symbol 
-    WHERE "Adj Close" <> '' OR close <> '' OR high <> '' OR low <> '' OR open <> '' OR volume <> ''
+    WHERE s.open IS NOT NULL
 ),
 rend_medio_mensile AS (
     SELECT mese, Symbol, sector, rendimento_medio_effettivo,
